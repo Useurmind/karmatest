@@ -1,0 +1,6 @@
+/node_modules
+/typescript.trx
+/Scripts/**/*.js
+/Scripts/**/*.js.map
+/Test/**/*.js
+/Test/**/*.js.map

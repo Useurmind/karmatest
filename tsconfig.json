@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "moduleResolution": "node",
+        "watch": false,  // for development specify -w on command line
+        //"noImplicitAny": false,
+        //"noEmitOnError": true,
+        //"removeComments": false,
+        "sourceMap": true,
+        "target": "es5",
+        "importHelpers": false,
+        //"outFile": "./SwhCompositeReleaseManagement.App.js",
+        "lib": [ "dom", "es6", "scripthost" ],
+        "baseUrl": "Scripts/typings/imported",
+        "jsx": "react"
+    },
+    "compileOnSave": true,
+    "exclude": [
+        "node_modules"
+        //"wwwroot",
+        //"typings",
+    ]
+}
