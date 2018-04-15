@@ -4,3 +4,4 @@
 /Scripts/**/*.js.map
 /Test/**/*.js
 /Test/**/*.js.map
+package-lock.json
