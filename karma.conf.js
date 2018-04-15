@@ -1,3 +1,5 @@
+var webpack = require("webpack");
+
 // Karma configuration
 // Generated on Fri Apr 06 2018 08:14:17 GMT+0200 (Mitteleuropäische Sommerzeit)
 
@@ -12,10 +14,15 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
 
+    // add mime type for typescript so chrome will load it
+    mime: {
+      'text/x-typescript': ['ts','tsx']
+    },
 
     // list of files / patterns to load in the browser
     files: [
-      'Test/**/*Spec.js'
+      { pattern: 'Scripts/**/*.ts', included: false, served: false },
+      'Test/**/*Spec.ts'
     ],
 
 
@@ -28,7 +35,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       // add webpack as preprocessor
-      'Test/**/*Spec.js': [ 'webpack' ]
+      'Test/**/*Spec.ts': [ 'webpack', 'sourcemap' ]
     },
 
     webpack: {
@@ -40,6 +47,27 @@ module.exports = function(config) {
       node: {
         fs: 'empty'
       },
+      mode: "development",
+      module: {
+        rules: [
+          {
+            test: /\.tsx?$/,
+            use: 'ts-loader',
+            exclude: /node_modules/
+          }
+        ]
+      },
+      plugins: [
+        // existing plugins go here
+        new webpack.SourceMapDevToolPlugin({
+          filename: null, // if no value is provided the sourcemap is inlined
+          test: /\.(ts|js)($|\?)/i // process .js and .ts files only
+        })
+      ],
+      resolve: {
+        extensions: [ '.tsx', '.ts', '.js' ]
+      },
+      devtool: 'inline-source-map',
     },
 
     // test results reporter to use
@@ -68,7 +96,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ["PhantomJS"],
+    browsers: ["Chrome", "PhantomJS"],
 
     // you can define custom flags
     customLaunchers: {

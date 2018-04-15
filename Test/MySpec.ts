@@ -9,3 +9,9 @@ describe("My Test", () => {
         expect(2 + 2).toEqual(3);
     });
 });
+
+describe("Get1", () => {
+    it("delivers 1", () => {
+        expect(get1()).toEqual(1);
+    });
+});
